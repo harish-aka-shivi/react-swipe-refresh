@@ -1,6 +1,6 @@
 import React , {Component} from 'react';
 import Refresher from './Refresher.js';
-
+import './SwipeRefreshLayout.css';
 class SwipeRefreshView extends Component {
   constructor(props) {
     super(props);
@@ -27,36 +27,36 @@ class SwipeRefreshView extends Component {
     }
   }
 
-   simulateRefreshAction() {
-    const sleep = (timeout) => new Promise(resolve => setTimeout(resolve, timeout));
-
-    const transitionEnd = function(propertyName, node) {
-      return new Promise(resolve => {
-        function callback(e) {
-          e.stopPropagation();
-          if (e.propertyName === propertyName) {
-            node.removeEventListener('transitionend', callback);
-            resolve(e);
-          }
-        }
-        node.addEventListener('transitionend', callback);
-      });
-    }
-
-    const refresher = document.querySelector('.refresher');
-
-    document.body.classList.add('refreshing');
-    // await sleep(2000);
-
-    refresher.classList.add('shrink');
-    // await transitionEnd('transform', refresher);
-    refresher.classList.add('done');
-
-    refresher.classList.remove('shrink');
-    document.body.classList.remove('refreshing');
-    // await sleep(0); // let new styles settle.
-    refresher.classList.remove('done');
-  }
+  //  simulateRefreshAction() {
+  //   const sleep = (timeout) => new Promise(resolve => setTimeout(resolve, timeout));
+  //
+  //   const transitionEnd = function(propertyName, node) {
+  //     return new Promise(resolve => {
+  //       function callback(e) {
+  //         e.stopPropagation();
+  //         if (e.propertyName === propertyName) {
+  //           node.removeEventListener('transitionend', callback);
+  //           resolve(e);
+  //         }
+  //       }
+  //       node.addEventListener('transitionend', callback);
+  //     });
+  //   }
+  //
+  //   const refresher = document.querySelector('.refresher');
+  //
+  //   document.body.classList.add('refreshing');
+  //   // await sleep(2000);
+  //
+  //   refresher.classList.add('shrink');
+  //   // await transitionEnd('transform', refresher);
+  //   refresher.classList.add('done');
+  //
+  //   refresher.classList.remove('shrink');
+  //   document.body.classList.remove('refreshing');
+  //   // await sleep(0); // let new styles settle.
+  //   refresher.classList.remove('done');
+  // }
 
 
 
@@ -76,6 +76,15 @@ class SwipeRefreshView extends Component {
   }
 
   componentDidMount() {
+
+    if(this.props.disableChromeDefaultRefresh) {
+      let x = document.getElementsByTagName("BODY")[0];
+      if(x) {
+        x.style["overscroll-behavior-y"] = 'none';
+      }
+
+    }
+
     window.addEventListener('touchstart', this.handleTouchStart, {passive:true});
     window.addEventListener('touchmove', this.handleTouchMove, {passive:true});
   }

@@ -1,11 +1,11 @@
 var path = require('path');
- 
+
 module.exports = {
     mode: 'production',
     entry: './src/SwipeRefreshView.js',
     output: {
-        path: path.resolve('lib'),
-        filename: 'BoilerplateComponent.js',
+        path: path.resolve(__dirname, 'build'),
+        filename: 'SwipeRefreshView.js',
         libraryTarget: 'commonjs2'
     },
     module: {
@@ -14,6 +14,13 @@ module.exports = {
                 test: /\.jsx?$/,
                 exclude: /(node_modules)/,
                 use: 'babel-loader'
+            },
+            {
+              "test": /\.css$/,
+                "use": [
+                    "style-loader",
+                    "css-loader"
+                ]
             }
         ]
     }

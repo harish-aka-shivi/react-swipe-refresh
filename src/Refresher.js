@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import './SwipeRefreshLayout.css';;
+import './SwipeRefreshLayout.css';
 
 class Refresher extends Component {
   render() {

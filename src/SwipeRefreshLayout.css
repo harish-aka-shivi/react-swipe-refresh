@@ -14,7 +14,7 @@
   transition: all 200ms cubic-bezier(0,0,0.2,1);
   will-change: transform, opacity;
   display: inline-flex;
-  /* justify-content: space-evenly; */
+  justify-content: space-evenly;
   align-items: center;
   margin-top: -150px;
   visibility: hidden;
