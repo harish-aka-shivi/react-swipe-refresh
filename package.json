@@ -1,6 +1,6 @@
 {
   "name": "react-swipe-refresh",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Pull to refresh component for react",
   "main": "build/SwipeRefreshView.js",
   "license": "MIT",
